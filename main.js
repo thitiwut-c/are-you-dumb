@@ -7,10 +7,11 @@ function hide(e) {
     e.target.setAttribute("style", "opacity: 0;")
 
     noBtnStatic.removeEventListener("mouseenter", hide)
+    noBtnStatic.removeEventListener("click", handleNo)
 
     // Show button.
     noBtnDynamic.setAttribute("style", "")
-
+    noBtnDynamic.addEventListener("mouseenter", moveAway)
     noBtnDynamic.dispatchEvent(new MouseEvent("mouseenter"))
 }
 
@@ -45,7 +46,12 @@ function moveAway(e) {
     e.target.setAttribute("style", style)
 }
 
-noBtnDynamic.addEventListener("mouseenter", moveAway)
+function handleNo() {
+    alert("Either you are not dumb 👍 or you are a mobile phone user 👎.")
+}
+
+noBtnStatic.addEventListener("click", handleNo)
+noBtnDynamic.addEventListener("click", handleNo)
 
 function handleYes() {
     alert("Yes, you are dumb. 🤣")
