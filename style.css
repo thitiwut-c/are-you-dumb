@@ -3,7 +3,7 @@ body {
   width: 100vw;
   display: flex;
   flex-direction: column;
-  background-color: #fafafa;
+  background-color: #FFE0B2;
   color: #212121;
 }
 
@@ -26,4 +26,15 @@ body {
 
 .btn {
   margin: 0 8px;
+  padding: 8px 16px;
+  font-size: 2em;
+  color: #212121;
+}
+
+.btn-primary {
+  background-color: #8BC34A;
+}
+
+.btn-danger {
+  background-color: #FF5722;
 }
