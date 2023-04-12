@@ -3,10 +3,10 @@
 const noBtnStatic = document.getElementById("no-btn-static")
 const noBtnDynamic = document.getElementById("no-btn-dynamic")
 
-function hide(e) {
+function handleFirstMouseEnter(e) {
     e.target.setAttribute("style", "opacity: 0;")
 
-    noBtnStatic.removeEventListener("mouseenter", hide)
+    noBtnStatic.removeEventListener("mouseenter", handleFirstMouseEnter)
     noBtnStatic.removeEventListener("click", handleNo)
 
     // Show button.
@@ -15,7 +15,7 @@ function hide(e) {
     noBtnDynamic.dispatchEvent(new MouseEvent("mouseenter"))
 }
 
-noBtnStatic.addEventListener("mouseenter", hide)
+noBtnStatic.addEventListener("mouseenter", handleFirstMouseEnter)
 
 function moveAway(e) {
     const { top: oldY, left: oldX } = e.target.getBoundingClientRect()
