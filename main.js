@@ -52,3 +52,9 @@ function handleYes() {
 }
 
 document.getElementById("yes-btn").addEventListener("click", handleYes)
+
+function moveButtonOnResize() {
+    noBtnDynamic.dispatchEvent(new MouseEvent("mouseenter"))
+}
+
+window.addEventListener("resize", moveButtonOnResize)
