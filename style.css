@@ -31,10 +31,14 @@ body {
     color: #212121;
 }
 
-.btn-primary {
+.btn-yes {
     background-color: #8bc34a;
 }
 
-.btn-danger {
+.btn-no {
     background-color: #ff5722;
+}
+
+.btn-dynamic {
+    position: absolute;
 }
