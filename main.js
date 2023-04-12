@@ -46,3 +46,9 @@ function moveAway(e) {
 }
 
 noBtnDynamic.addEventListener("mouseenter", moveAway)
+
+function handleYes() {
+    alert("Yes, you are dumb. 🤣")
+}
+
+document.getElementById("yes-btn").addEventListener("click", handleYes)
