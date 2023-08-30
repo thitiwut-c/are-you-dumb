@@ -66,7 +66,7 @@ function handleYes() {
 
 document.getElementById("yes-btn").addEventListener("click", handleYes)
 
-function moveButtonOnResize(ev) {
+function moveButtonOnResize() {
     if (!isMouseEntered) {
         const { x, y } = noBtnStatic.getBoundingClientRect()
         noBtnDynamic.setAttribute(
@@ -74,6 +74,15 @@ function moveButtonOnResize(ev) {
             `top: ${y}px; left: ${x}px; z-index: -1;`,
         )
 
+        return
+    }
+
+    const { x, y, width, height } = noBtnDynamic.getBoundingClientRect()
+    const { innerHeight: wh, innerWidth: ww } = window
+    const isOverlapViewportRight = Math.round(x + width) >= ww
+    const isOverlapViewportBottom = Math.round(y + height) >= wh
+
+    if (!isOverlapViewportBottom && !isOverlapViewportRight) {
         return
     }
 
