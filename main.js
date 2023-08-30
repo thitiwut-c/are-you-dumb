@@ -5,10 +5,6 @@ let isMouseEntered = false
 const noBtnStatic = document.getElementById("no-btn-static")
 const noBtnDynamic = document.getElementById("no-btn-dynamic")
 
-// Set starting position for dynamic no button.
-const { x, y } = noBtnStatic.getBoundingClientRect()
-noBtnDynamic.setAttribute("style", `top: ${y}px; left: ${x}px; z-index: -1;`)
-
 function handleFirstMouseEnter(e) {
     isMouseEntered = true
     e.target.setAttribute("style", "opacity: 0;")
@@ -17,14 +13,18 @@ function handleFirstMouseEnter(e) {
     noBtnStatic.removeEventListener("click", handleNo)
 
     // Show button.
-    noBtnDynamic.setAttribute("style", "")
+    const { x, y } = noBtnStatic.getBoundingClientRect()
+    noBtnDynamic.setAttribute(
+        "style",
+        `position: absolute; top: ${y}px; left: ${x}px; transition: top 0.25s, left 0.25s;`,
+    )
     noBtnDynamic.addEventListener("mouseenter", moveAway)
-    noBtnDynamic.dispatchEvent(new MouseEvent("mouseenter"))
 }
 
 noBtnStatic.addEventListener("mouseenter", handleFirstMouseEnter)
 
 function moveAway(e) {
+    console.log("TOUCHED")
     const { top: oldY, left: oldX } = e.target.getBoundingClientRect()
     const { offsetHeight: btnH, offsetWidth: btnW } = e.target
     const { innerHeight: wh, innerWidth: ww } = window
@@ -73,6 +73,7 @@ function moveButtonOnResize(ev) {
             "style",
             `top: ${y}px; left: ${x}px; z-index: -1;`,
         )
+
         return
     }
 
