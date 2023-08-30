@@ -3,11 +3,12 @@ body {
     width: 100vw;
     display: flex;
     flex-direction: column;
-    background-color: #e0e0e0;
-    color: #212121;
+    background-color: rgb(33, 37, 41);
+    color: rgb(255, 255, 255);
 }
 
 .header {
+    margin-top: 1rem;
     text-align: center;
 }
 
@@ -21,22 +22,12 @@ body {
 
 .inner {
     display: flex;
+    column-gap: 16px;
     justify-content: space-between;
 }
 
-.btn {
-    margin: 0 8px;
-    padding: 8px 16px;
-    font-size: 2em;
-    color: #212121;
-}
-
-.btn-yes {
-    background-color: #8bc34a;
-}
-
-.btn-no {
-    background-color: #ff5722;
+#no-btn-static:hover {
+    cursor: default;
 }
 
 .btn-dynamic {
