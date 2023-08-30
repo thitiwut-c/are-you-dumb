@@ -1,9 +1,16 @@
 "use strict"
 
+let isMouseEntered = false
+
 const noBtnStatic = document.getElementById("no-btn-static")
 const noBtnDynamic = document.getElementById("no-btn-dynamic")
 
+// Set starting position for dynamic no button.
+const { x, y } = noBtnStatic.getBoundingClientRect()
+noBtnDynamic.setAttribute("style", `top: ${y}px; left: ${x}px; z-index: -1;`)
+
 function handleFirstMouseEnter(e) {
+    isMouseEntered = true
     e.target.setAttribute("style", "opacity: 0;")
 
     noBtnStatic.removeEventListener("mouseenter", handleFirstMouseEnter)
@@ -41,7 +48,7 @@ function moveAway(e) {
         isOverlap = isOverlapX && isOverlapY
     }
 
-    const style = `position: absolute; top: ${newY}px; left: ${newX}px;`
+    const style = `top: ${newY}px; left: ${newX}px; transition: top 0.25s, left 0.25s;`
 
     e.target.setAttribute("style", style)
 }
@@ -59,7 +66,16 @@ function handleYes() {
 
 document.getElementById("yes-btn").addEventListener("click", handleYes)
 
-function moveButtonOnResize() {
+function moveButtonOnResize(ev) {
+    if (!isMouseEntered) {
+        const { x, y } = noBtnStatic.getBoundingClientRect()
+        noBtnDynamic.setAttribute(
+            "style",
+            `top: ${y}px; left: ${x}px; z-index: -1;`,
+        )
+        return
+    }
+
     noBtnDynamic.dispatchEvent(new MouseEvent("mouseenter"))
 }
 
